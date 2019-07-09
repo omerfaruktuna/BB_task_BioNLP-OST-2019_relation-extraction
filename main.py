@@ -167,7 +167,7 @@ def Find_Relationship(param_result_helper_list,db):
 
             if len(intersect) != 0:
 
-                with open(db.file_names_ending_with_a1[i][:-3]+".a2", 'w+') as the_file:
+                with open(db.file_names_ending_with_a1[i][:-3]+".a2", 'a+') as the_file:
 
                     num_lines = sum(1 for line in open(db.file_names_ending_with_a1[i][:-3]+".a2"))
 
@@ -247,6 +247,10 @@ c = Build_file_contents_a1(a, directory, data.file_names_ending_with_a1,data)
 d = Update_file_contents_a1(c,data)
 
 e = New_a1_file_content_with_sentenceID(d, b,data)
+
+for i in range(len(data.file_names_ending_with_a1)):
+  with open(data.file_names_ending_with_a1[i][:-3]+".a2", 'w+') as the_file:
+    pass
 
 f = Result_Helper_Function(e,data)
 
