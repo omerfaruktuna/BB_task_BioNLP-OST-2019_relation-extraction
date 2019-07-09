@@ -182,7 +182,7 @@ def Find_Relationship(param_result_helper_list,db):
 
                                 tmp_t2 = db.file_contents_a1_with_sentenceID[i][j].split()[0]
 
-                        the_file.write('R{}\tExhibits\tMicroorganism:{}\tProperty:{}\n'.format(num_lines+m+1,tmp_t1,tmp_t2))
+                        the_file.write('R{}\tExhibits Microorganism:{} Property:{}\n'.format(num_lines+m+1,tmp_t1,tmp_t2))
 
 
 ################################################
@@ -208,7 +208,7 @@ def Find_Relationship(param_result_helper_list,db):
 
                                 tmp_t2 = db.file_contents_a1_with_sentenceID[i][j].split()[0]
 
-                        the_file.write('R{}\tLives_In\tMicroorganism:{}\tLocation:{}\n'.format(num_lines+m+1,tmp_t1,tmp_t2))
+                        the_file.write('R{}\tLives_In Microorganism:{} Location:{}\n'.format(num_lines+m+1,tmp_t1,tmp_t2))
 
 ################################################
 
@@ -234,7 +234,7 @@ def Find_Relationship(param_result_helper_list,db):
 
                                 tmp_t2 = db.file_contents_a1_with_sentenceID[i][j].split()[0]
 
-                        the_file.write('R{}\tLives_In\tMicroorganism:{}\tLocation:{}\n'.format(num_lines+m+1,tmp_t1,tmp_t2))
+                        the_file.write('R{}\tLives_In Microorganism:{} Location:{}\n'.format(num_lines+m+1,tmp_t1,tmp_t2))
 
 ################################################
 
