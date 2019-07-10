@@ -1,7 +1,5 @@
 import os
-import numpy as np
 import re
-import nltk
 from nltk import sent_tokenize
 from Data_Class import Data_Class
 
@@ -294,7 +292,7 @@ for i in range(len(data.file_names_ending_with_a1)):
 
   if data.file_names_ending_with_a1[i] == "BB-rel-F-25036636-003.a1":
     print(i)
-"""
+
 print(a[27])
 print("\n")
 print(b[27])
@@ -307,6 +305,6 @@ print(e[27])
 print("\n")
 print(f[27])
 print("\n")
-
+"""
 
 
