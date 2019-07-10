@@ -1,5 +1,7 @@
 import os
+import numpy as np
 import re
+import nltk
 from nltk import sent_tokenize
 from Data_Class import Data_Class
 
@@ -133,8 +135,11 @@ def Result_Helper_Function(param_file_contents_a1_with_sentenceID, db):
 
 def Find_Relationship(param_result_helper_list, db):
     dim_x = len(param_result_helper_list)
+
     for i in range(dim_x):
+
         dim_y = len(db.file_contents_a1_with_sentenceID[i])
+
         if 'Microorganism' in param_result_helper_list[i] and 'Phenotype' in param_result_helper_list[i]:
             tmp_1 = param_result_helper_list[i]['Microorganism']
             tmp_2 = param_result_helper_list[i]['Phenotype']
@@ -144,9 +149,12 @@ def Find_Relationship(param_result_helper_list, db):
 
             if len(intersect) != 0:
 
+                num_lines = sum(1 for line in open(db.file_names_ending_with_a1[i][:-3] + ".a2"))
+
+                q = 0
+
                 with open(db.file_names_ending_with_a1[i][:-3] + ".a2", 'a+') as the_file:
 
-                    num_lines = sum(1 for line in open(db.file_names_ending_with_a1[i][:-3] + ".a2"))
 
                     for m in range(len(intersect)):
 
@@ -167,8 +175,12 @@ def Find_Relationship(param_result_helper_list, db):
 
                         for r in range(len(tmp_t1)):
                             the_file.write(
-                                'R{}\tExhibits Microorganism:{} Property:{}\n'.format(num_lines + m + r + 1, tmp_t1[r],
+                                'R{}\tExhibits Microorganism:{} Property:{}\n'.format(num_lines + q + m + r + 1, tmp_t1[r],
                                                                                       tmp_t2[0]))
+                        q = q + r
+                        #num_lines = num_lines + 1
+
+
 
                         # the_file.write('R{}\tExhibits Microorganism:{} Property:{}\n'.format(num_lines+m+1,tmp_t1,tmp_t2))
 
@@ -182,9 +194,12 @@ def Find_Relationship(param_result_helper_list, db):
 
             if len(intersect) != 0:
 
+                num_lines = sum(1 for line in open(db.file_names_ending_with_a1[i][:-3] + ".a2"))
+
+                q = 0
+
                 with open(db.file_names_ending_with_a1[i][:-3] + ".a2", 'a+') as the_file:
 
-                    num_lines = sum(1 for line in open(db.file_names_ending_with_a1[i][:-3] + ".a2"))
                     for m in range(len(intersect)):
                         tmp_t1 = []
                         tmp_t2 = []
@@ -203,8 +218,11 @@ def Find_Relationship(param_result_helper_list, db):
 
                         for r in range(len(tmp_t2)):
                             the_file.write(
-                                'R{}\tLives_In Microorganism:{} Location:{}\n'.format(num_lines + m + r + 1, tmp_t1[0],
+                                'R{}\tLives_In Microorganism:{} Location:{}\n'.format(num_lines + q + m + r + 1, tmp_t1[0],
                                                                                       tmp_t2[r]))
+                        q = q + r
+
+                        #num_lines = num_lines + 1
 
                         # the_file.write('R{}\tLives_In Microorganism:{} Location:{}\n'.format(num_lines+m+1,tmp_t1,tmp_t2))
 
@@ -218,9 +236,11 @@ def Find_Relationship(param_result_helper_list, db):
 
             if len(intersect) != 0:
 
-                with open(db.file_names_ending_with_a1[i][:-3] + ".a2", 'a+') as the_file:
+                num_lines = sum(1 for line in open(db.file_names_ending_with_a1[i][:-3] + ".a2"))
 
-                    num_lines = sum(1 for line in open(db.file_names_ending_with_a1[i][:-3] + ".a2"))
+                q = 0
+
+                with open(db.file_names_ending_with_a1[i][:-3] + ".a2", 'a+') as the_file:
 
                     for m in range(len(intersect)):
                         tmp_t1 = []
@@ -240,8 +260,10 @@ def Find_Relationship(param_result_helper_list, db):
 
                         for r in range(len(tmp_t2)):
                             the_file.write(
-                                'R{}\tLives_In Microorganism:{} Location:{}\n'.format(num_lines + m + r + 1, tmp_t1[0],
+                                'R{}\tLives_In Microorganism:{} Location:{}\n'.format(num_lines + m + q + r + 1, tmp_t1[0],
                                                                                       tmp_t2[r]))
+                        q = q + r
+                        #num_lines = num_lines + 1
 
                         # the_file.write('R{}\tLives_In Microorganism:{} Location:{}\n'.format(num_lines+m+1,tmp_t1,tmp_t2))
 
@@ -263,6 +285,28 @@ for i in range(len(data.file_names_ending_with_a1)):
         pass
 
 f = Result_Helper_Function(e, data)
+# print(f[29])
 
 Find_Relationship(f, data)
+
+"""
+for i in range(len(data.file_names_ending_with_a1)):
+
+  if data.file_names_ending_with_a1[i] == "BB-rel-F-25036636-003.a1":
+    print(i)
+"""
+print(a[27])
+print("\n")
+print(b[27])
+print("\n")
+print(c[27])
+print("\n")
+print(d[27])
+print("\n")
+print(e[27])
+print("\n")
+print(f[27])
+print("\n")
+
+
 
