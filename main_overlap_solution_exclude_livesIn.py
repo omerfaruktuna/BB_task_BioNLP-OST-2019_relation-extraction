@@ -161,7 +161,7 @@ def Remove_overlap(param,db):
                 if tmp_word in t_1:
                     count += 1
             #if count > 1:
-            if count > 2 and param[i][j].split()[1] != "Phenotype":
+            if count > 1 and param[i][j].split()[1] != "Phenotype":
                 db.overlap_indices[i].append(j)
 
             count = 0
