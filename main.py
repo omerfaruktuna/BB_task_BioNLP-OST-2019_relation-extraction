@@ -17,7 +17,7 @@ punkt_param.abbrev_types = set(abbreviation)
 tokenizer = PunktSentenceTokenizer(punkt_param)
 
 # nltk.download('punkt')
-directory = "BioNLP-OST-2019_BB-rel_dev"
+directory = "BioNLP-OST-2019_BB-rel_test"
 
 data = Data_Class()
 
@@ -155,12 +155,14 @@ def Remove_overlap(param, db):
             tmp_word = tmp_list[i][j]
 
             for t_1 in tmp_list[i]:
-                if tmp_word in t_1:
+                if (tmp_word in t_1) and (abs(len(tmp_word)-len(t_1))>=0) :
                     count += 1
             # if count > 1:
             #if count > 2 and param[i][j].split()[1] != "Phenotype":
             if count >= 2:
                 yy.append(j)
+                print(count)
+                print("HOLAAAA1")
 
             count = 0
 
@@ -170,10 +172,12 @@ def Remove_overlap(param, db):
             tmp_word = tmp_list[i][j]
 
             for t_1 in tmp_list[i]:
-                if  tmp_word.find(t_1) != -1:
+                if  tmp_word.find(t_1)!= -1 and (abs(len(tmp_word)-len(t_1))>0):
                     count_2 += 1
 
             if (count_2 == 1) and (j in yy):
+                print(count_2)
+                print("HOLAAAA2")
                 db.overlap_indices[i].append(j)
 
             count = 0
